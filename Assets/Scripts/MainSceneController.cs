@@ -8,13 +8,14 @@ public class MainSceneController : MonoBehaviour
 {
     public TextMeshProUGUI team1ScoreText;
     public TextMeshProUGUI team2ScoreText;
-    public GameObject panelConfirmReset;
     public GameObject btnTeam1Up;
     public GameObject btnTeam2Up;
     public GameObject btnTeam1Down;
     public GameObject btnTeam2Down;
     public GameObject btnReset;
-    public GameObject imgSchnappi;
+    public GameObject btnSchnappi;
+    public GameObject panelConfirmReset;
+    public GameObject panelPrivacyPolicy;
 
     private int team1Score = 0;
     private int team2Score = 0;
@@ -34,7 +35,7 @@ public class MainSceneController : MonoBehaviour
         rt2Up      = btnTeam2Up.GetComponent<RectTransform>();
         rt2Down    = btnTeam2Down.GetComponent<RectTransform>();
         rtReset    = btnReset.GetComponent<RectTransform>();
-        rtSchnappi = imgSchnappi.GetComponent<RectTransform>();
+        rtSchnappi = btnSchnappi.GetComponent<RectTransform>();
 
         team1Score = PlayerPrefs.GetInt("Team1Score");
         team2Score = PlayerPrefs.GetInt("Team2Score");
@@ -170,15 +171,19 @@ public class MainSceneController : MonoBehaviour
         }
     }
 
-    private void PlaceRectTransform(RectTransform rectTransform, float left, float top)
-    {
-        rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, left, rectTransform.rect.width);
-        rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, top, rectTransform.rect.height);
-    }
-
     private void SaveScores() { 
         PlayerPrefs.SetInt("Team1Score", team1Score);
         PlayerPrefs.SetInt("Team2Score", team2Score);
         PlayerPrefs.Save();
     }
+    public void OnSchnappi()
+    {
+        panelPrivacyPolicy.SetActive(true);
+    }
+
+    public void OnCancelPP()
+    {
+        panelPrivacyPolicy.SetActive(false);
+    }
+
 }
