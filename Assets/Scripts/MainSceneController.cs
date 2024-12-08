@@ -57,6 +57,17 @@ public class MainSceneController : MonoBehaviour
     {
         team1ScoreText.text = team1Score.ToString();
         team2ScoreText.text = team2Score.ToString();
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            // back on privacy-policy
+            if (panelPrivacyPolicy.gameObject.activeSelf)
+            {
+                panelPrivacyPolicy.SetActive(false);
+            } else if (panelConfirmReset.gameObject.activeSelf)
+            {
+                panelConfirmReset.SetActive(false);
+            }
+        }
     }
 
     public void OnTeam1Up()
@@ -184,6 +195,12 @@ public class MainSceneController : MonoBehaviour
     public void OnCancelPP()
     {
         panelPrivacyPolicy.SetActive(false);
+    }
+
+    public void OnExit()
+    {
+        Debug.Log("Quitting");
+        Application.Quit();
     }
 
 }
